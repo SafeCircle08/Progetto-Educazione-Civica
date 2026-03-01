@@ -30,9 +30,11 @@ public class Room extends JFrame {
         setSize(_w, _h);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setResizable(false);
         setLayout(null);
         setVisible(false);
     }
+
     private void initPanel(int _w, int _h) {
         panel = new JPanel();
         panel.setLayout(null);
@@ -42,21 +44,20 @@ public class Room extends JFrame {
     }
 
     private Image resizeRoomIcon(ImageIcon _roomIcon) {
-        return _roomIcon.getImage().getScaledInstance(WINDOW_W, WINDOW_H, Image.SCALE_SMOOTH);
+        int w = getContentPane().getWidth();
+        int h = getContentPane().getHeight();
+        return _roomIcon.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
     }
+
     private void initRoomIcon(ImageIcon _roomIcon) {
-        if (_roomIcon == null || _roomIcon.getIconWidth() == -1) {
-            System.out.println("❌ Immagine NON caricata");
-        } else {
-            System.out.println("✅ Immagine caricata");
-        }
         roomIcon = _roomIcon;
         ImageIcon resizedIcon = new ImageIcon(resizeRoomIcon(roomIcon));
 
         roomIconLabel = new JLabel(resizedIcon);
-        roomIconLabel.setBounds(0, 0, getRoomW(), getRoomH());
+        roomIconLabel.setBounds(-10, -20, getRoomW(), getRoomH());
         panel.add(roomIconLabel);
     }
+
     protected void changeRoom(Room newRoom) {
         newRoom.setVisible(true);
         dispose();

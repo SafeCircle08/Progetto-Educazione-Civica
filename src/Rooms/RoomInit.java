@@ -8,6 +8,6 @@ public class RoomInit{
 
         Room initRoom = new Room("Init", 500, 500, new ImageIcon("/Assets/sprRmFirstFloor.png"));
         initRoom.changeRoom(initRoom);
-        initRoom.changeRoom(RoomsDefines.getGroundFloor());
+        initRoom.changeRoom(RoomsDefines.getMenuRoom());
     }
 }

@@ -2,9 +2,9 @@ package Rooms;
 
 import javax.swing.*;
 
-public class RoomEntrance extends Room {
+public class Menu extends Room {
 
-    public RoomEntrance(String _title, int _w, int _h, ImageIcon icon) {
+    public Menu(String _title, int _w, int _h, ImageIcon icon) {
         super(_title, _w, _h, icon);
 
         JButton porta = new JButton("ciao");
