@@ -22,4 +22,9 @@ public class RoomsDefines {
             "First Floor",
             DEFAULT_W_WIDTH, DEFAULT_H_WIDTH,
             new ImageIcon(RoomFirstFloor.class.getResource("/Assets/sprRmFirstFloor.png")));
+
+    public static Room getEntrance() { return entrance; }
+    public static Room getGroundFloor() { return groundFloor; }
+    public static Room getFirstFloor() { return firstFloor; }
+
 }

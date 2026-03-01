@@ -8,8 +8,8 @@ public class RoomEntrance extends Room {
         super(_title, _w, _h, icon);
 
         JButton porta = new JButton("ciao");
-        porta.setBounds(20, 20, 500, 30);
-        porta.addActionListener( e-> { changeRoom(RoomsDefines.groundFloor); });
+        porta.setBounds(5, 20, 100, 100);
+        porta.addActionListener( e-> { changeRoom(RoomsDefines.getGroundFloor()); });
         panel.add(porta);
     }
 }

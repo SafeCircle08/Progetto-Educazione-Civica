@@ -44,7 +44,6 @@ public class Room extends JFrame {
     private Image resizeRoomIcon(ImageIcon _roomIcon) {
         return _roomIcon.getImage().getScaledInstance(WINDOW_W, WINDOW_H, Image.SCALE_SMOOTH);
     }
-
     private void initRoomIcon(ImageIcon _roomIcon) {
         if (_roomIcon == null || _roomIcon.getIconWidth() == -1) {
             System.out.println("❌ Immagine NON caricata");
@@ -61,5 +60,14 @@ public class Room extends JFrame {
     protected void changeRoom(Room newRoom) {
         newRoom.setVisible(true);
         dispose();
+    }
+
+    protected JButton createLinkButton(Room destination, int x, int y, int w, int h) {
+        JButton linkButton = new JButton("Questo è un collegamento");
+        linkButton.setBounds(x, y, w, h);
+
+        linkButton.addActionListener(e -> { changeRoom(destination); });
+        panel.add(linkButton);
+        return linkButton;
     }
 }
