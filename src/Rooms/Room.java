@@ -2,6 +2,7 @@ package Rooms;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class Room extends JFrame {
     protected String title;
@@ -13,8 +14,7 @@ public class Room extends JFrame {
 
     public Room(String _title, int _w, int _h, ImageIcon _roomIcon) {
         initWindow(_title,_w,_h);
-        initPanel(_w, _h);
-        initRoomIcon(_roomIcon);
+        initPanel(_w, _h, _roomIcon);
     }
 
     protected String getRoomTitle() { return this.title; }
@@ -35,8 +35,9 @@ public class Room extends JFrame {
         setVisible(false);
     }
 
-    private void initPanel(int _w, int _h) {
+    private void initPanel(int _w, int _h, ImageIcon _roomIcon) {
         panel = new JPanel();
+        initRoomIcon(_roomIcon);
         panel.setLayout(null);
         panel.setBounds(0, 0, _w, _h);
         panel.setVisible(true);
@@ -46,7 +47,7 @@ public class Room extends JFrame {
     private Image resizeRoomIcon(ImageIcon _roomIcon) {
         int w = getContentPane().getWidth();
         int h = getContentPane().getHeight();
-        return _roomIcon.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
+        return _roomIcon.getImage().getScaledInstance(WINDOW_W, WINDOW_H, Image.SCALE_SMOOTH);
     }
 
     private void initRoomIcon(ImageIcon _roomIcon) {
@@ -61,6 +62,34 @@ public class Room extends JFrame {
     protected void changeRoom(Room newRoom) {
         newRoom.setVisible(true);
         dispose();
+    }
+
+    protected void setLabelFontColor(JLabel label, Color color, String fName, int fontType, int size) {
+        label.setForeground(color);
+        label.setFont(new Font(fName, fontType, size));
+    }
+
+    protected JButton createButton(String btnTxt, ImageIcon icon,  int x, int y, ActionListener e) {
+
+        JLabel label = new JLabel(btnTxt);
+        setLabelFontColor(label, Color.WHITE, "Arial", Font.TRUETYPE_FONT, 20);
+
+        JButton btn = new JButton(icon);
+
+        btn.setBorderPainted(false);
+        btn.setFocusPainted(false);
+        btn.setContentAreaFilled(false);
+
+        btn.setBounds(x, y, icon.getIconWidth(), icon.getIconHeight());
+        label.setBounds(x + 20, y, icon.getIconWidth(), icon.getIconHeight());
+        btn.addActionListener(e);
+
+        btn.setVisible(true);
+        panel.add(btn);
+        panel.add(label);
+        panel.setComponentZOrder(btn, 0);
+        panel.setComponentZOrder(label, 0);
+        return btn;
     }
 
     protected JButton createLinkButton(Room destination, int x, int y, int w, int h) {
